@@ -14,16 +14,17 @@ slider.addEventListener('mousedown', e => {
 });
 
 slider.addEventListener('mouseleave', () => {
-  if (!isDown) return;
+  isDown = false;
   slider.classList.remove('active');
 });
 
 slider.addEventListener('mouseup', () => {
   isDown = false;
+  slider.classList.remove('active');
 });
 
 slider.addEventListener('mousemove', e => {
-  isDown = true;
+  if (!isDown) return;
   e.preventDefault();
   const x = e.pageX - slider.offsetLeft;
   const drag = (x - startX) * 3;
